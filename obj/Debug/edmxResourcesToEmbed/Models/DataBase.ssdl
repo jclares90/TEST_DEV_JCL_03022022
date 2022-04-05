@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TOKA_DEVTESTModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Tb_PersonasFisicas">
+    <Key>
+      <PropertyRef Name="IdPersonaFisica" />
+    </Key>
+    <Property Name="IdPersonaFisica" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FechaRegistro" Type="datetime" />
+    <Property Name="FechaActualizacion" Type="datetime" />
+    <Property Name="Nombre" Type="varchar" MaxLength="50" />
+    <Property Name="ApellidoPaterno" Type="varchar" MaxLength="50" />
+    <Property Name="ApellidoMaterno" Type="varchar" MaxLength="50" />
+    <Property Name="RFC" Type="varchar" MaxLength="13" />
+    <Property Name="FechaNacimiento" Type="date" />
+    <Property Name="UsuarioAgrega" Type="int" />
+    <Property Name="Activo" Type="bit" />
+  </EntityType>
+  <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'TOKA_DEVTEST.dbo.TB_Usuarios' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+  <EntityType Name="TB_Usuarios">
+    <Key>
+      <PropertyRef Name="IdUsuario" />
+    </Key>
+    <Property Name="IdUsuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Correo" Type="varchar" MaxLength="250" />
+    <Property Name="Contrasena" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <Function Name="sp_ActualizarPersonaFisica" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IdPersonaFisica" Type="int" Mode="In" />
+    <Parameter Name="Nombre" Type="varchar" Mode="In" />
+    <Parameter Name="ApellidoPaterno" Type="varchar" Mode="In" />
+    <Parameter Name="ApellidoMaterno" Type="varchar" Mode="In" />
+    <Parameter Name="RFC" Type="varchar" Mode="In" />
+    <Parameter Name="FechaNacimiento" Type="date" Mode="In" />
+    <Parameter Name="UsuarioAgrega" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_AgregarPersonaFisica" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Nombre" Type="varchar" Mode="In" />
+    <Parameter Name="ApellidoPaterno" Type="varchar" Mode="In" />
+    <Parameter Name="ApellidoMaterno" Type="varchar" Mode="In" />
+    <Parameter Name="RFC" Type="varchar" Mode="In" />
+    <Parameter Name="FechaNacimiento" Type="date" Mode="In" />
+    <Parameter Name="UsuarioAgrega" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_EliminarPersonaFisica" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IdPersonaFisica" Type="int" Mode="In" />
+  </Function>
+  <EntityContainer Name="TOKA_DEVTESTModelStoreContainer">
+    <EntitySet Name="Tb_PersonasFisicas" EntityType="Self.Tb_PersonasFisicas" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TB_Usuarios" EntityType="Self.TB_Usuarios" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [TB_Usuarios].[IdUsuario] AS [IdUsuario], 
+    [TB_Usuarios].[Correo] AS [Correo], 
+    [TB_Usuarios].[Contrasena] AS [Contrasena]
+    FROM [dbo].[TB_Usuarios] AS [TB_Usuarios]</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+</Schema>

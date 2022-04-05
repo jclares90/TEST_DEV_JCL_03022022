@@ -1,0 +1,41 @@
+﻿@model List<TEST_DEV_JCL_03022022.Models.ViewModels.ListTablaViewModel>
+@{
+    ViewBag.Title = "C R U D";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<div class="row">
+
+    <div style="text-align:right;padding:5px;">
+        <a href="~/Tabla/Nuevo" class="btn btn-primary">Nuevo</a>
+    </div>
+    <div class="col-md-12">
+        <table class="table">
+            <tr>
+                <th>No</th>
+                <th>Nombre</th>
+                <th>Ape_Paterno</th>
+                <th>Ape_Materno</th>
+                <th>RFC</th>
+                <th></th>
+            </tr>
+            @foreach (var oElemento in Model)
+            {
+            <tr>
+                <td>@oElemento.id</td>
+                <td>@oElemento.nombre</td>
+                <td>@oElemento.apaterno</td>
+                <td>@oElemento.amaterno</td>
+                <td>@oElemento.rfc</td>
+                <td>
+                    <a class="btn btn-default" href="~/Tabla/Editar/@oElemento.id">Editar</a>
+                    <a class="btn btn-danger" href="~/Tabla/Eliminar/@oElemento.id">Eliminar</a>
+                </td>
+            </tr>
+            }
+        </table>
+    </div>
+
+</div>
+

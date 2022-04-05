@@ -1,0 +1,43 @@
+﻿@model TEST_DEV_JCL_03022022.Models.ViewModels.TablaViewModel
+@{
+    ViewBag.Title = "Nuevo";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm("Nuevo", "Tabla", FormMethod.Post))
+{
+    <div class="row">
+        <div class="col-md-12">
+            <div>
+                @Html.LabelFor(d => d.nombre)
+                @Html.TextBoxFor(d => d.nombre, "", new { @class = "form-control" })
+                @Html.ValidationMessageFor(d => d.nombre, null, new { @class = "alert" })
+            </div>
+            <div>
+                @Html.LabelFor(d => d.apaterno)
+                @Html.TextBoxFor(d => d.apaterno, "", new { @class = "form-control" })
+                @Html.ValidationMessageFor(d => d.apaterno, null, new { @class = "alert" })
+            </div>
+            <div>
+                @Html.LabelFor(d => d.amaterno)
+                @Html.TextBoxFor(d => d.amaterno, "", new { @class = "form-control" })
+                @Html.ValidationMessageFor(d => d.amaterno, null, new { @class = "alert" })
+            </div>
+            <div>
+                @Html.LabelFor(d => d.rfc)
+                @Html.TextBoxFor(d => d.rfc, "", new { @class = "form-control" })
+                @Html.ValidationMessageFor(d => d.rfc, null, new { @class = "alert" })
+            </div>
+            <div>
+                @Html.LabelFor(d => d.fechanacimiento)<br />
+                @Html.EditorFor(d => d.fechanacimiento, "", new { @class = "form-control" })
+                @Html.ValidationMessageFor(d => d.fechanacimiento, null, new { @class = "alert" })
+            </div>
+                <br />
+                <div style="text-align:right">
+                    <input value="Guardar" class="btn btn-primary" type="submit" />
+                </div>
+            </div>
+        </div>
+}
